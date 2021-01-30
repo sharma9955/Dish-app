@@ -1,0 +1,110 @@
+<div class="container">
+  <div class="card mt-4">
+    <div class="card-body">
+      <div class="card-title">
+        <h3 class="text-secondary">Add Dishes</h3>
+      </div>
+      <form role="form" [formGroup]="addRecepie" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="dishName">Name of Dish</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="dishname"
+            id="dishName"
+          />
+          <span
+            *ngIf="
+              !addRecepie.get('dishname').valid &&
+              addRecepie.get('dishname').touched
+            "
+            class="help-block text-danger"
+            >Please enter a valid Dish!</span
+          >
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="ingredientName">Ingredient Name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="ingredientsList"
+                id="ingredientName"
+              />
+              <span
+                class="help-block text-danger"
+                *ngIf="
+                  !addRecepie.get('ingredientsList').valid &&
+                  addRecepie.get('ingredientsList').touched
+                "
+                >Please enter valid ingredients</span
+              >
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="quantity">Quantity</label>
+              <input
+                type="number"
+                class="form-control"
+                id="quantity"
+                formControlName="quantity"
+              />
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Unit</label>
+              <select
+                class="form-control"
+                id="exampleFormControlSelect1"
+                formControlName="unit"
+              >
+                <option value="1">Gm</option>
+                <option value="2">Kg</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="text-area">Steps to Cook</label>
+          <textarea
+            class="form-control"
+            id="text-area"
+            formControlName="stepsToCook"
+            rows="3"
+          >
+          </textarea>
+        </div>
+        <div class="form-group">
+          <label for="url">Dish Image Url</label>
+          <input
+            class="form-control"
+            type="url"
+            id="url"
+            formControlName="url"
+          />
+        </div>
+        <div class="form-group button">
+          <button
+            [disabled]="this.addRecepie.invalid"
+            type="submit"
+            class="btn btn-outline-success btn-md round mt-3"
+          >
+            Add Dish
+          </button>
+        </div>
+        <div class="form-group button">
+          <button
+            type="button"
+            class="btn btn-outline-success btn-md round mt-3"
+            (click)="viewdishes()"
+          >
+            View Dishes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
